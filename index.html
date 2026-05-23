@@ -1,44 +1,47 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cloth Store</title>
+  <title>Tiffen Ordering System</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>Cloth Ordering System</h1>
+  <header>
+    <h1>Online Tiffen Ordering</h1>
 
-  <div class="container">
+    <a href="cart.html" class="cart-btn">
+      View Cart 🛒
+    </a>
+  </header>
 
-    <!-- Product Card -->
-    <div class="card">
-      <img src="images/shirt1.jpg" alt="Shirt">
-
-      <h2>Blue Shirt</h2>
-
-      <p>₹799</p>
-
-      <button onclick="addToCart('Blue Shirt',799)">
-        Add to Cart
-      </button>
-    </div>
-
-  </div>
-
-  <!-- Cart -->
-  <div class="cart">
-
-    <h2>My Cart</h2>
-
-    <ul id="cartItems"></ul>
-
-    <h3>Total: ₹<span id="total">0</span></h3>
-
-  </div>
+  <div class="container" id="foodList"></div>
 
   <script src="script.js"></script>
+</body>
+</html><!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tiffen Ordering System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+  <header>
+    <h1>Online Tiffen Ordering</h1>
+
+    <a href="cart.html" class="cart-btn">
+      View Cart 🛒
+    </a>
+  </header>
+
+  <div class="container" id="foodList"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
