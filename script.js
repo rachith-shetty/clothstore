@@ -1,119 +1,56 @@
-// script.js
-
-const items = [
-  {
-    name: "Idli",
-    price: 40,
-    image: "images/idli.jpg"
-  },
-  {
-    name: "Dosa",
-    price: 60,
-    image: "images/dosa.jpg"
-  },
-  {
-    name: "Poori",
-    price: 50,
-    image: "images/poori.jpg"
-  },
-  {
-    name: "Upma",
-    price: 45,
-    image: "images/upma.jpg"
-  }
+let menuItems = [
+  { name:"Idli", price:40, img:"images/idli.jpg" },
+  { name:"Dosa", price:60, img:"images/dosa.jpg" }
 ];
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-const foodList = document.getElementById("foodList");
+const menuDiv = document.getElementById("menu");
 
-if(foodList){
+// show menu
+if(menuDiv){
+  menuItems.forEach((item, index)=>{
+    menuDiv.innerHTML += `
+      <div class="card">
+        <img src="${item.img}">
+        <h3>${item.name}</h3>
+        <p>₹${item.price}</p>
 
-  items.forEach((item,index)=>{
-
-    const div = document.createElement("div");
-
-    div.classList.add("card");
-
-    div.innerHTML = `
-      <img src="${item.image}">
-      <h2>${item.name}</h2>
-      <p>₹${item.price}</p>
-
-      <div class="controls">
-
-        <button onclick="decrease(${index})">-</button>
-
-        <span class="count" id="count-${index}">
-          ${getQuantity(item.name)}
-        </span>
-
-        <button onclick="increase(${index})">+</button>
-
+        <button onclick="add(${index})">+</button>
+        <button onclick="remove(${index})">-</button>
       </div>
     `;
-
-    foodList.appendChild(div);
-
   });
-
 }
 
-function getQuantity(name){
+// add item
+function add(i){
+  let item = menuItems[i];
 
-  const found = cart.find(item => item.name === name);
-
-  return found ? found.quantity : 0;
-}
-
-function increase(index){
-
-  const item = items[index];
-
-  const found = cart.find(p => p.name === item.name);
+  let found = cart.find(c => c.name === item.name);
 
   if(found){
-    found.quantity++;
-  }else{
-    cart.push({
-      ...item,
-      quantity:1
-    });
+    found.qty++;
+  } else {
+    cart.push({...item, qty:1});
   }
 
-  saveCart();
-
-  updateCount(index);
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-function decrease(index){
+// remove item
+function remove(i){
+  let item = menuItems[i];
 
-  const item = items[index];
-
-  const found = cart.find(p => p.name === item.name);
+  let found = cart.find(c => c.name === item.name);
 
   if(found){
+    found.qty--;
 
-    found.quantity--;
-
-    if(found.quantity <= 0){
-      cart = cart.filter(p => p.name !== item.name);
+    if(found.qty <= 0){
+      cart = cart.filter(c => c.name !== item.name);
     }
-
   }
 
-  saveCart();
-
-  updateCount(index);
-}
-
-function updateCount(index){
-
-  document.getElementById(`count-${index}`).innerText =
-    getQuantity(items[index].name);
-}
-
-function saveCart(){
-
-  localStorage.setItem("cart",JSON.stringify(cart));
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
