@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cloth Ordering System</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <header>
+    <h1>Smart Cloth Ordering System</h1>
+    <p>Select your fashion items</p>
+  </header>
+
+  <section class="products">
+
+    <div class="card">
+      <img src="images/shirt1.jpg" alt="Shirt">
+      <h2>Formal Shirt</h2>
+      <p>₹799</p>
+      <button onclick="addToCart('Formal Shirt',799)">
+        Order Now
+      </button>
+    </div>
+
+    <div class="card">
+      <img src="images/pant1.jpg" alt="Pant">
+      <h2>Black Pant</h2>
+      <p>₹999</p>
+      <button onclick="addToCart('Black Pant',999)">
+        Order Now
+      </button>
+    </div>
+
+    <div class="card">
+      <img src="images/hoodie1.jpg" alt="Hoodie">
+      <h2>Winter Hoodie</h2>
+      <p>₹1299</p>
+      <button onclick="addToCart('Winter Hoodie',1299)">
+        Order Now
+      </button>
+    </div>
+
+  </section>
+
+  <section class="cart">
+    <h2>Order Summary</h2>
+
+    <ul id="cartItems"></ul>
+
+    <h3>Total: ₹<span id="total">0</span></h3>
+
+    <button class="checkout" onclick="checkout()">
+      Place Order
+    </button>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
