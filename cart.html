@@ -6,13 +6,15 @@
 </head>
 <body>
 
-<h1>My Kart 🛒</h1>
+<a href="index.html" class="cartBtn">⬅ Back</a>
+
+<h1>My Cart 🛒</h1>
 
 <div id="cart"></div>
 
 <h2 id="total"></h2>
 
-<h3>Payment Option</h3>
+<h3>Payment</h3>
 
 <label><input type="radio" name="pay"> Online Payment</label><br>
 <label><input type="radio" name="pay"> Cash on Delivery</label>
@@ -24,32 +26,24 @@
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-let cartDiv = document.getElementById("cart");
 let total = 0;
+let cartDiv = document.getElementById("cart");
 
-cart.forEach((item, i)=>{
+cart.forEach(item=>{
   total += item.price * item.qty;
 
   cartDiv.innerHTML += `
     <div class="card">
       <h3>${item.name}</h3>
-      <p>₹${item.price} x ${item.qty}</p>
-
-      <button onclick="removeItem(${i})">Remove</button>
+      <p>${item.price} x ${item.qty}</p>
+      <p>Total: ₹${item.price * item.qty}</p>
     </div>
   `;
 });
 
-document.getElementById("total").innerText = "Total: ₹" + total;
+document.getElementById("total").innerText = "Grand Total: ₹" + total;
 
-// remove item
-function removeItem(i){
-  cart.splice(i,1);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  location.reload();
-}
-
-// order
+// ORDER
 function order(){
   alert("Order Placed Successfully!");
   localStorage.removeItem("cart");
