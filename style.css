@@ -1,15 +1,14 @@
 body{
   background:#f8f1e7;
   font-style: italic;
-  color:black;
   text-align:center;
   font-family: Arial;
 }
 
 .card{
   background:white;
-  width:200px;
-  margin:20px auto;
+  width:220px;
+  margin:15px auto;
   padding:10px;
   border-radius:10px;
 }
@@ -20,17 +19,24 @@ img{
 }
 
 button{
-  margin:5px;
   padding:5px 10px;
+  margin:5px;
   background:black;
   color:white;
+  border:none;
+  cursor:pointer;
 }
 
-.cart-link{
+.cartBtn{
   display:inline-block;
-  margin:10px;
   padding:10px;
   background:black;
   color:white;
   text-decoration:none;
+  margin:10px;
+}
+
+.count{
+  font-size:18px;
+  margin:0 10px;
 }
