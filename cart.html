@@ -14,7 +14,7 @@
 
 <h2 id="total"></h2>
 
-<h3>Payment</h3>
+<h3>Payment Option</h3>
 
 <label><input type="radio" name="pay"> Online Payment</label><br>
 <label><input type="radio" name="pay"> Cash on Delivery</label>
@@ -26,16 +26,16 @@
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-let total = 0;
 let cartDiv = document.getElementById("cart");
+let total = 0;
 
-cart.forEach(item=>{
+cart.forEach(item => {
   total += item.price * item.qty;
 
   cartDiv.innerHTML += `
     <div class="card">
       <h3>${item.name}</h3>
-      <p>${item.price} x ${item.qty}</p>
+      <p>₹${item.price} x ${item.qty}</p>
       <p>Total: ₹${item.price * item.qty}</p>
     </div>
   `;
@@ -43,11 +43,10 @@ cart.forEach(item=>{
 
 document.getElementById("total").innerText = "Grand Total: ₹" + total;
 
-// ORDER
 function order(){
   alert("Order Placed Successfully!");
   localStorage.removeItem("cart");
-  location.href="index.html";
+  location.href = "index.html";
 }
 </script>
 
