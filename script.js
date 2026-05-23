@@ -1,27 +1,24 @@
 let items = [
-  { name:"Idli", price:40, img:"images/idli.jpg" },
-  { name:"Dosa", price:60, img:"images/dosa.jpg" },
-  { name:"Upma", price:50, img:"images/upma.jpg" },
-  { name:"Puri", price:55, img:"images/puri.jpg" }
+  { name: "Idli", price: 40, img: "images/idli.jpg" },
+  { name: "Dosa", price: 60, img: "images/dosa.jpg" },
+  { name: "Upma", price: 50, img: "images/upma.jpg" },
+  { name: "Puri", price: 55, img: "images/puri.jpg" }
 ];
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// SAVE CART
 function save(){
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// GET QTY
 function getQty(name){
-  let item = cart.find(i => i.name === name);
-  return item ? item.qty : 0;
+  let found = cart.find(i => i.name === name);
+  return found ? found.qty : 0;
 }
 
-// SHOW MENU
 const menu = document.getElementById("menu");
 
-items.forEach((item, index)=>{
+items.forEach((item, i) => {
 
   menu.innerHTML += `
     <div class="card">
@@ -29,18 +26,17 @@ items.forEach((item, index)=>{
       <h3>${item.name}</h3>
       <p>₹${item.price}</p>
 
-      <button onclick="add(${index})">+</button>
+      <button onclick="add(${i})">+</button>
 
-      <span class="count" id="count-${index}">
+      <span class="count" id="count-${i}">
         ${getQty(item.name)}
       </span>
 
-      <button onclick="remove(${index})">-</button>
+      <button onclick="remove(${i})">-</button>
     </div>
   `;
 });
 
-// ADD
 function add(i){
   let item = items[i];
 
@@ -48,7 +44,7 @@ function add(i){
 
   if(found){
     found.qty++;
-  }else{
+  } else {
     cart.push({...item, qty:1});
   }
 
@@ -56,7 +52,6 @@ function add(i){
   update(i);
 }
 
-// REMOVE
 function remove(i){
   let item = items[i];
 
@@ -74,7 +69,6 @@ function remove(i){
   update(i);
 }
 
-// UPDATE DISPLAY COUNT
 function update(i){
   document.getElementById("count-"+i).innerText =
     getQty(items[i].name);
