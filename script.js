@@ -1,28 +1,31 @@
 let total = 0;
 
-function addToCart(item, price) {
+function addToCart(name, price){
 
   const cartItems = document.getElementById("cartItems");
 
   const li = document.createElement("li");
 
-  li.textContent = `${item} - ₹${price}`;
+  li.innerHTML = `
+    ${name} - ₹${price}
+    <button class="remove-btn">
+      Remove
+    </button>
+  `;
 
   cartItems.appendChild(li);
 
   total += price;
 
   document.getElementById("total").innerText = total;
-}
 
-function checkout() {
+  // Remove item
+  li.querySelector("button").onclick = function(){
 
-  if(total === 0){
-    alert("Cart is empty!");
-    return;
-  }
+    li.remove();
 
-  alert("Order placed successfully!");
+    total -= price;
 
-  location.reload();
+    document.getElementById("total").innerText = total;
+  };
 }
